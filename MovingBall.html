@@ -1,0 +1,49 @@
+<div id="ball" style="
+  z-index:5;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:lightsalmon"></div>
+
+<script>
+
+var velocityX = 5;
+var velocityY = 3;
+var positionX = 0;
+var positionY = 0;
+
+var Ymax = 500;
+var Xmax = 230;
+
+var reverseX = false;
+var reverseY = false;
+var ball = document.getElementById('ball');
+var randomColors = ["lightgreen", "lightpink", "lightsalmon", "lightblue", "dodgerblue", "tomato"]
+
+function moveBall() {
+  if (reverseX) {
+    positionX = positionX - velocityX;
+  } else {
+    positionX = positionX + velocityX;
+  }
+  if (reverseY) {
+    positionY = positionY - velocityY;
+  } else {
+    positionY = positionY + velocityY;
+  }
+  if (positionX <= 0 || positionX >= Xmax) {
+    reverseX = !reverseX;
+    ball.style.backgroundColor = randomColors[Math.floor(Math.random()*randomColors.length)];
+  }
+  if (positionY <= 0 || positionY >= Ymax){
+    reverseY = !reverseY;
+    ball.style.backgroundColor = randomColors[Math.floor(Math.random()*randomColors.length)];
+  }
+ball.style.top = positionY + 'px';
+ball.style.left = positionX + 'px';
+}
+setInterval (moveBall, 20);
+</script>
